@@ -1,0 +1,175 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-roles
+      author: GoldHolub
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: role
+                  value: 'USER'
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: role
+                  value: 'ADMIN'
+
+  - changeSet:
+      id: insert-users
+      author: GoldHolub
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: 'user1@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$/v2Ae9grTQ4cNJK2FwFYQ.1RK0YjD1Z59rAfLrUe3jJPPvb2/sCue'
+              - column:
+                  name: first_name
+                  value: 'User'
+              - column:
+                  name: last_name
+                  value: 'One'
+              - column:
+                  name: shipping_address
+                  value: '123 Main St, City, Country'
+              - column:
+                  name: date
+                  value: '2024-01-30'
+              - column:
+                  name: phone
+                  value: '380955541718'
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+            dbms: mysql
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: 'barabanv2003@gmail.com'
+              - column:
+                  name: password
+                  value: '$2a$12$/v2Ae9grTQ4cNJK2FwFYQ.1RK0YjD1Z59rAfLrUe3jJPPvb2/sCue'
+              - column:
+                  name: first_name
+                  value: 'Volodymyr'
+              - column:
+                  name: last_name
+                  value: 'Baraban'
+              - column:
+                  name: shipping_address
+                  value: '456 Side St, Town, Country'
+              - column:
+                  name: date
+                  value: '2024-01-30'
+              - column:
+                  name: phone
+                  value: '380665269990'
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+            dbms: mysql
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: 'maksym@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$/v2Ae9grTQ4cNJK2FwFYQ.1RK0YjD1Z59rAfLrUe3jJPPvb2/sCue'
+              - column:
+                  name: first_name
+                  value: 'User'
+              - column:
+                  name: last_name
+                  value: 'Three'
+              - column:
+                  name: shipping_address
+                  value: '789 Center St, Village, Country'
+              - column:
+                  name: date
+                  value: '2024-01-30'
+              - column:
+                  name: phone
+                  value: '380955541718'
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+            dbms: mysql
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: email
+                  value: 'maria@example.com'
+              - column:
+                  name: password
+                  value: '$2a$12$/v2Ae9grTQ4cNJK2FwFYQ.1RK0YjD1Z59rAfLrUe3jJPPvb2/sCue'
+              - column:
+                  name: first_name
+                  value: 'Maria'
+              - column:
+                  name: last_name
+                  value: 'User'
+              - column:
+                  name: shipping_address
+                  value: 'Admin Address'
+              - column:
+                  name: date
+                  value: '2024-01-30'
+              - column:
+                  name: phone
+                  value: '380955541718'
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+            dbms: mysql
+
+  - changeSet:
+      id: insert-user-roles
+      author: GoldHolub
+      changes:
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'user1@example.com')
+              - column:
+                  name: role_id
+                  value: 1
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'barabanv2003@gmail.com')
+              - column:
+                  name: role_id
+                  value: 2
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'maksym@example.com')
+              - column:
+                  name: role_id
+                  value: 2
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  valueComputed: (SELECT id FROM users WHERE email = 'maria@example.com')
+              - column:
+                  name: role_id
+                  value: 2

@@ -1,5 +1,7 @@
 package pet.network.demo.config;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,8 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pet.network.demo.security.JwtAuthenticationFilter;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableMethodSecurity
 @RequiredArgsConstructor
@@ -37,7 +37,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/api/auth/**", "/swagger-ui/**", "/error")
+                                .requestMatchers("/api/auth/**", "/v3/api-docs/**",
+                                        "/swagger-ui.html", "/swagger-ui/**", "/api/pets/search",
+                                        "/error")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
