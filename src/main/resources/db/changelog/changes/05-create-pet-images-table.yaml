@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-pet-images-table
+      author: GoldHolub
+      changes:
+        - createTable:
+            tableName: pet_images
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: image
+                  type: LONGBLOB
+                  constraints:
+                    nullable: false
